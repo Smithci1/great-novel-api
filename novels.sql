@@ -5,7 +5,7 @@ CREATE USER 'readers'@'localhost' IDENTIFIED BY 'reader1';
 GRANT ALL ON novels.* TO 'readers'@'localhost';
 
 use novels;
-drop table Books;
+drop table ;
 use novels;
 
 create table booksGenres (
@@ -57,6 +57,9 @@ createdAt DATETIME DEFAULT NOW(),
 );
 
 insert into authors (firstName, lastName) values ('Bram', 'Stoker'),('Oscar','Wilde'),
-('Alice','Walker'),('Leo','Tolstoy'),('Charles','Dickens'),('Arthur','Conan Doyle'),('Robert','Louis Stevenson'),('Fyodor','Dostoyevsky'),('Agatha','Christie'),('Ray','Bradbury'),('George','Orwell'),
+('Alice','Walker'),('Leo','Tolstoy'),('Charles','Dickens'),('Arthur','Miller'),('Alexandre','Dumas'),('Arthur','Conan Doyle'),('Robert','Louis Stevenson'),
+('Fyodor','Dostoyevsky'),('Agatha','Christie'),('Ray','Bradbury'),('George','Orwell'),
 ('H.G.','Wells'),('Chinua','Achebe');
 select * from authors;
+
+insert into Books (title) values (''),

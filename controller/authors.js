@@ -8,4 +8,15 @@ const getAllAuthors = async (req, res) => {
   return res.send(authors)
 }
 
-module.exports = { getAllAuthors }
+const getAuthorbyid = async (req, res) => {
+  const { id } = req.params
+  // books include genre
+  const oneAuthor = await models.authors.findOne({
+    where: { id },
+    include: [{ model: models.books, include: [{ model: models.genres }] }]
+  })
+
+  return res.send(oneAuthor)
+}
+
+module.exports = { getAllAuthors, getAuthorbyid }

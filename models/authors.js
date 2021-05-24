@@ -7,4 +7,4 @@ const authors = (connection, Sequelize) => {
   }, { paranoid: true })
 }
 
-module.exports = { authors }
+module.exports = authors

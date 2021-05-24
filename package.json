@@ -4,9 +4,9 @@
   "description": "## Part 1 Instructions In the initial commit of this project you were provided with data on several novels including their author and genres. Working in a branch called `part-one-answer`, your tasks are:",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "lint": "eslint --format codeframe .",
-    "lint:fix": "eslint --fix --format codeframe ."
+    "dev": "./node_modules/.bin/nodemon index.jx",
+    "lint": "./node_modules/.bin/eslint --format codeframe .",
+    "lint:fix": "./node_modules/.bin/eslint --fix --format codeframe ."
   },
   "repository": {
     "type": "git",

@@ -10,12 +10,12 @@ const connection = new Sequelize('novels', 'readers', 'reader1',
 const authors = authorsModel(connection, Sequelize)
 const genres = genresModel(connection, Sequelize,)
 const books = booksModel(connection, Sequelize, authors)
-const bookGenres = BGmodel(connection, Sequelize, genres, books)
+const booksGenres = BGmodel(connection, Sequelize, genres, books)
 
 books.belongsTo(authors)
-genres.hasMany(books)
+authors.hasMany(books)
 
-genres.belongsToMany(books, { through: bookGenres })
-books.belongsToMany(genres, { through: bookGenres })
+genres.belongsToMany(books, { through: booksGenres })
+books.belongsToMany(genres, { through: booksGenres })
 
-module.exports = { authors, genres, books, bookGenres }
+module.exports = { authors, genres, books, booksGenres }

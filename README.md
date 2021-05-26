@@ -78,7 +78,7 @@ Your API should support the routes listed below, pulling the data from the datab
 
 ### Get All Genres
 
-**GET** http://localhost:1337/genres
+--**GET** http://localhost:1337/genres
 
 **Response**
 ```JSON

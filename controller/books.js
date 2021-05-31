@@ -12,9 +12,10 @@ const getAllBooks = async (req, res) => {
 const getBookbyid = async (req, res) => {
   const { id } = req.params
   const oneBook = await models.books.findOne({
-    where: { id },
-    include: [{ model: models.authors }, { model: models.genres }]
+    where: { id: { [models.Op.like]: `%${id}%` } }
   })
+
+
 
   return res.send(oneBook)
 }

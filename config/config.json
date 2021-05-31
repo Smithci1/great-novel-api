@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "readers",
+    "password": "reader1",
+    "database": "novels",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "readers",
+    "password": "reader1",
+    "database": "novels",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "readers",
+    "password": "reader1",
+    "database": "novels",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

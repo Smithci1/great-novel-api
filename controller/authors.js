@@ -9,14 +9,28 @@ const getAllAuthors = async (req, res) => {
 }
 
 const getAuthorbyid = async (req, res) => {
+  const { firstName } = req.params
+  const { lastName } = req.params
   const { id } = req.params
+
+  console.log(lastName)
   // books include genre
-  const oneAuthor = await models.authors.findOne({
-    where: { id },
-    include: [{ model: models.books, include: [{ model: models.genres }] }]
+  const oneAuthor = await models.authors.findAll({
+    attributes: ['id', 'firstName', 'lastName'],
+    where: { firstName: { [models.Op.like]: `%${firstName}%` } } ||
+    { lastName: { [models.Op.like]: `%${lastName}%` } } ||
+    { id: { [models.Op.like]: `%${id}%` } },
+    include: [{
+      model: models.authors,
+      attributes: ['id', 'firstName', 'lastName']
+    }]
+
   })
 
-  return res.send(oneAuthor)
+  return oneAuthor
+    ? res.send(oneAuthor)
+    : res.sendStatus(404)
 }
 
 module.exports = { getAllAuthors, getAuthorbyid }
+

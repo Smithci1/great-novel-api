@@ -1,26 +1,113 @@
-'use strict';
-
-const { genres } = require("../models");
 
 module.exports = {
-  up: async (queryInterface, Sequelize, genres, books) => {
-    await queryInterface.createTable('genres', { 
-      id: {type: Sequelize.INTEGER, autoIncrement: true, primaryKEY: true},
-      genre: {type: Sequelize.STRING, allowNull: false},
-      createdAt: {type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')},
-      updatedAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATED CURRENT_TIMESTAMP')},
-      deletedAt: { type: Sequelize.DATE },
-    })
 
-    return quetyInterface.createTable('bookGenres' {
-       genreid: { type: Sequelize.INTEGER, references: { model: genres, key: 'id'}},
-       bookid: {type: Sequelize.INTEGER, references: {model: books, key: 'id'}},
- })
+  up: async (queryInterface) => {
 
-    
- 
-     
-  },
+    await queryInterface.bulkInsert('genres', [
+      {genre: 'Fiction'},
+      {genre: 'Horror'},
+      {genre: 'Fantasy'},
+      {genre: 'Gothic'},
+      {genre: 'Historical Fiction'},
+      {genre: 'War'},
+      {genre: 'Russian Literature'},
+      {genre: 'Drama'},
+      {genre: 'Plays'},
+      {genre: 'Adventure'},
+      {genre: 'French Literature'},
+      {genre: 'Mystery'},
+      {genre: 'Crime'},
+      {genre: 'Thriller'},
+      {genre: 'Science Fiction'},
+      {genre: 'Dystopia'},
+      {genre: 'Time Travel'},
+      {genre: 'African Literature'}
+    ])
+    await queryInterface.bulkInsert('authors', [
+      {firstName: 'Bram', lastName: 'Stoker'},
+      {firstName: 'Oscar', lastName: 'Wilde'},
+      {firstName: 'Alice', lastName: 'Walker'},
+      {firstName: 'Leo', lastName: 'Tolstoy'},
+      {firstName: 'Charles', lastName: 'Dickens'},
+      {firstName: 'Arthur', lastName: 'Miller'},
+      {firstName: 'Alexandre', lastName: 'Dumas'},
+      {firstName: 'Arthur', lastName: 'Conan Doyle'},
+      {firstName: 'Robert', lastName: 'Louis Stevenson'},
+      {firstName: 'Fyodor', lastName: 'Dostoyevsky'},
+      {firstName: 'Agatha', lastName: 'Christie'},
+      {firstName: 'Ray', lastName: 'Bradbury'},
+      {firstName: 'George', lastName: 'Orwell'},
+      {firstName: 'H.G.', lastName: 'Wells'},
+      {firstName: 'Chinua', lastName: 'Achebe'}, 
+    ])
+    await queryInterface.bulkInsert('books', [
+      {title: 'Dracula', authorid: 1},
+      {title: 'The Picture of Dorian Gray', authorid: 2},
+      {title: 'The Color Purple', authorid: 3},
+      {title: 'War and Peace', authorid: 4},
+      {title: 'A Tale of Two Cities', authorid: 5},
+      {title: 'The Crucible', authorid: 6},
+      {title: 'The Three Musketeers', authorid: 7},
+      {title: 'The Hound of the Baskervilles', authorid: 8},
+      {title: 'The Strange Case of Dr. Jekyll and Mr. Hyde', authorid: 9},
+      {title: 'Crime and Punishment', authorid: 10},
+      {title: 'Murder on the Orient Express', authorid: 11},
+      {title: 'Fahrenheit 451', authorid: 12},
+      {title: 'Animal Farm', authorid: 13},
+      {title: 'The Time Machine', authorid: 14},
+      {title: 'Things Fall Apart', authorid: 15},
+    ])
+    await queryInterface.bulkInsert('booksGenres', [
+      {bookid:1 , genreid: 1 },
+      {bookid: 1, genreid: 2 },
+      {bookid:1 , genreid: 3 },  
+      {bookid: 2, genreid: 1 },  
+      {bookid: 2, genreid: 2 },  
+      {bookid: 2, genreid: 3 },  
+      {bookid: 2, genreid: 4 },  
+      {bookid: 3, genreid: 1 },  
+      {bookid: 3, genreid: 5 },         
+      {bookid: 4, genreid: 1 },  
+      {bookid: 4, genreid: 5 },  
+      {bookid: 4, genreid: 6 },  
+      {bookid: 4, genreid: 7 },  
+      {bookid: 5, genreid: 1 },  
+      {bookid: 5, genreid: 5 },  
+      {bookid: 6, genreid: 1 },  
+      {bookid: 6, genreid: 5 },  
+      {bookid: 6, genreid: 8 },  
+      {bookid: 6, genreid: 9 },  
+      {bookid: 7, genreid: 1 },  
+      {bookid: 7, genreid: 5 },  
+      {bookid: 7, genreid: 10 },  
+      {bookid: 7, genreid: 11 },  
+      {bookid: 8, genreid: 1 },  
+      {bookid: 8, genreid: 12 },  
+      {bookid: 8, genreid: 13 },  
+      {bookid: 8, genreid: 14 },
+      {bookid: 9, genreid: 1 }, 
+      {bookid: 9, genreid: 15 },   
+      {bookid: 9, genreid: 2 }, 
+      {bookid: 10, genreid: 1 }, 
+      {bookid: 10, genreid: 7 }, 
+      {bookid: 10, genreid: 12 }, 
+      {bookid: 11, genreid: 1 }, 
+      {bookid: 11, genreid: 12 }, 
+      {bookid: 12, genreid: 1 }, 
+      {bookid: 12, genreid: 15 }, 
+      {bookid: 12, genreid: 16 }, 
+      {bookid: 13, genreid: 1 }, 
+      {bookid: 13, genreid: 15 }, 
+      {bookid: 13, genreid: 16 }, 
+      {bookid: 14, genreid: 1 }, 
+      {bookid: 14, genreid: 15 }, 
+      {bookid: 14, genreid: 17 }, 
+      {bookid: 15, genreid: 1 }, 
+      {bookid: 15, genreid: 5 }, 
+      {bookid: 15, genreid: 18 }, 
+    ])
+  }
+  
 
   down: async (queryInterface, Sequelize) => {
     

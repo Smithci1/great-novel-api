@@ -13,7 +13,7 @@ const getAuthorbyid = async (req, res) => {
   const { lastName } = req.params
   const { id } = req.params
 
-  console.log(lastName)
+
   // books include genre
   const oneAuthor = await models.authors.findAll({
     attributes: ['id', 'firstName', 'lastName'],

@@ -1,8 +1,5 @@
-
 module.exports = {
-
-  up: async (queryInterface) => {
-
+  up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('genres', [
       {genre: 'Fiction'},
       {genre: 'Horror'},
@@ -22,8 +19,8 @@ module.exports = {
       {genre: 'Dystopia'},
       {genre: 'Time Travel'},
       {genre: 'African Literature'}
-    ])
-    await queryInterface.bulkInsert('authors', [
+    ]),
+   await queryInterface.bulkInsert('authors', [
       {firstName: 'Bram', lastName: 'Stoker'},
       {firstName: 'Oscar', lastName: 'Wilde'},
       {firstName: 'Alice', lastName: 'Walker'},
@@ -39,8 +36,8 @@ module.exports = {
       {firstName: 'George', lastName: 'Orwell'},
       {firstName: 'H.G.', lastName: 'Wells'},
       {firstName: 'Chinua', lastName: 'Achebe'}, 
-    ])
-    await queryInterface.bulkInsert('books', [
+    ]),
+     await queryInterface.bulkInsert('books', [
       {title: 'Dracula', authorid: 1},
       {title: 'The Picture of Dorian Gray', authorid: 2},
       {title: 'The Color Purple', authorid: 3},
@@ -56,8 +53,8 @@ module.exports = {
       {title: 'Animal Farm', authorid: 13},
       {title: 'The Time Machine', authorid: 14},
       {title: 'Things Fall Apart', authorid: 15},
-    ])
-    await queryInterface.bulkInsert('booksGenres', [
+    ]),
+     await queryInterface.bulkInsert('booksGenres', [
       {bookid:1 , genreid: 1 },
       {bookid: 1, genreid: 2 },
       {bookid:1 , genreid: 3 },  
@@ -110,5 +107,11 @@ module.exports = {
   
 
   down: async (queryInterface, Sequelize) => {
-    
-}
+    /**
+     * Add reverting commands here.
+     *
+     * Example:
+     * await queryInterface.dropTable('users');
+     */
+  }
+};

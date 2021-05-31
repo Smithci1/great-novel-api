@@ -1,6 +1,3 @@
-'use strict'
-
-const { authors, genres, books, booksGenres } = require('../models')
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -13,15 +10,15 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
       },
-      deletedAt: { type: Sequelize.DATE },
+      deletedAt: { type: Sequelize.DATE, },
     })
 
     await queryInterface.createTable('genres', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKEY: true },
       genre: { type: Sequelize.STRING, allowNull: false },
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
-      updatedAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATED CURRENT_TIMESTAMP') },
-      deletedAt: { type: Sequelize.DATE },
+      updatedAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATED CURRENT_TIMESTAMP'), },
+      deletedAt: { type: Sequelize.DATE, },
     })
     await queryInterface.createTable('books', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
@@ -30,7 +27,7 @@ module.exports = {
       cratedAt: { tyupe: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
       deletedAt: { type: Sequelize.DATE },
     })
@@ -46,5 +43,10 @@ module.exports = {
       deletedAt: { type: Sequelize.DATE }
     })
   },
+  down: async (queryInterface) => {
+    await queryInterface.dropTable('booksGenres')
+    await queryInterface.dorpTable('books')
+    await queryInterface.dropTable('authors')
+  }
 
 }

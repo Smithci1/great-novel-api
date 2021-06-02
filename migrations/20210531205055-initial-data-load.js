@@ -53,8 +53,9 @@ module.exports = {
       { title: 'Animal Farm', authorid: 13 },
       { title: 'The Time Machine', authorid: 14 },
       { title: 'Things Fall Apart', authorid: 15 },
-    ]),
-    await queryInterface.bulkInsert('booksGenres', [
+    ])
+
+    return queryInterface.bulkInsert('booksGenres', [
       { bookid: 1, genreid: 1 },
       { bookid: 1, genreid: 2 },
       { bookid: 1, genreid: 3 },

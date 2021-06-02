@@ -14,13 +14,13 @@ module.exports = {
     })
 
     await queryInterface.createTable('genres', {
-      id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKEY: true },
+      id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
       genre: { type: Sequelize.STRING, allowNull: false },
       createdAt: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATED CURRENT_TIMESTAMP'),
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
       deletedAt: { type: Sequelize.DATE, },
     })
@@ -28,7 +28,7 @@ module.exports = {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
       title: { type: Sequelize.STRING, allowNull: false },
       authorId: { type: Sequelize.INTEGER, references: { model: 'authors', key: 'id' } },
-      cratedAt: { tyupe: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
+      cratedAt: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -46,17 +46,14 @@ module.exports = {
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
-      deletedAt: { type: Sequelize.DATE }
+      deletedAt: { type: Sequelize.DATE, }
     })
   },
   down: async (queryInterface) => {
     await queryInterface.dropTable('booksGenres')
     await queryInterface.dropTable('books')
-    await queryInterface.dropTable('genres')
+    await queryInterface.dropTable('authors')
 
-    return queryInterface.dropTable('authors')
+    return queryInterface.dropTable('genres')
   }
-
-
-
 }

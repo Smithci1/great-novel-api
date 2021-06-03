@@ -78,7 +78,7 @@ Your API should support the routes listed below, pulling the data from the datab
 
 ### Get All Genres
 
-**GET** http://localhost:1337/genres
+--**GET** http://localhost:1337/genres
 
 **Response**
 ```JSON
@@ -137,7 +137,7 @@ Your API should support the routes listed below, pulling the data from the datab
 
 ### Get All Novels with their authors and genres
 
-**GET** http://localhost:1337/novels
+**GET** http://localhost:1337/books
 
 **Response**
 ```JSON
@@ -263,7 +263,7 @@ In a branch called `part-two-answer`, continuing from your previous work, your t
 ```
 
 ### Get Novel by Title (partial match)
-**GET** http://localhost:1337/novels/peace
+**GET** http://localhost:1337/books/peace
 
 **Response**
 ```JSON

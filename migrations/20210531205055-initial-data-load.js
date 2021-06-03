@@ -36,7 +36,7 @@ module.exports = {
       { firstName: 'George', lastName: 'Orwell' },
       { firstName: 'H.G.', lastName: 'Wells' },
       { firstName: 'Chinua', lastName: 'Achebe' },
-    ]),
+    ])
     await queryInterface.bulkInsert('books', [
       { title: 'Dracula', authorid: 1 },
       { title: 'The Picture of Dorian Gray', authorid: 2 },

@@ -24,7 +24,7 @@ genres.belongsToMany(books, { through: booksGenres })
 books.belongsToMany(genres, { through: booksGenres })
 
 module.exports = {
-  Op: Sequelize.Op,
+  Sequelize,
   authors,
   genres,
   books,

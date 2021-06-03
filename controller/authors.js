@@ -1,3 +1,4 @@
+
 const models = require('../models')
 
 const getAllAuthors = async (req, res) => {
@@ -8,29 +9,31 @@ const getAllAuthors = async (req, res) => {
   return res.send(authors)
 }
 
-const getAuthorbyid = async (req, res) => {
-  const { firstName } = req.params
-  const { lastName } = req.params
-  const { id } = req.params
+const getAuthor = async (req, res) => {
+  const { search } = req.params
 
 
   // books include genre
-  const oneAuthor = await models.authors.findAll({
-    attributes: ['id', 'firstName', 'lastName'],
-    where: { firstName: { [models.Op.like]: `%${firstName}%` } } ||
-    { lastName: { [models.Op.like]: `%${lastName}%` } } ||
-    { id: { [models.Op.like]: `%${id}%` } },
+  const oneAuthor = await models.authors.findOne({
+ 
+    where: {
+      [models.Sequelize.Op.or]: [
+        { id: search },
+        { lastName: { [models.Sequelize.Op.like]: `%${search}%` } },
+        { firstName: { [ models.Sequelize.Op.like]: `%${search}%` } }
+      ]
+    },
     include: [{
-      model: models.authors,
-      attributes: ['id', 'firstName', 'lastName']
+      model: models.books,
+      include: [{ model: models.genres }]
     }]
-
   })
+
 
   return oneAuthor
     ? res.send(oneAuthor)
     : res.sendStatus(404)
 }
 
-module.exports = { getAllAuthors, getAuthorbyid }
+module.exports = { getAllAuthors, getAuthor }
 

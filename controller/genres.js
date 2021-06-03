@@ -7,24 +7,22 @@ const getAllGenres = async (req, res) => {
 }
 
 const getGenre = async (req, res) => {
-  const { id } = req.params
-  const { genre } = req.params
+  const { search } = req.params
+
   const genres = await models.genres.findOne({
-    where: { id: { [models.Op.like]: `%${id}%` } } ||
-    { genre: { [models.Op.like]: `%${genre}%` } },
-    include: [{
-      model: models.books,
-      attributes: ['id', 'authorId', 'title'],
-      include: [{
-        model: models.authors,
-        attributes: ['id', 'firstName', 'lastName']
-      }]
-    }]
+    where: {
+      [models.Sequelize.Op.or]: [
+        { id: search },
+        { genre: { [models.Sequelize.Op.like]: `%${search}%` }, }
+      ]
+    },
   })
+
 
   return genres
     ? res.send(genres)
     : res.send(404)
 }
+
 
 module.exports = { getAllGenres, getGenre }

@@ -28,13 +28,13 @@ module.exports = {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
       title: { type: Sequelize.STRING, allowNull: false },
       authorId: { type: Sequelize.INTEGER, references: { model: 'authors', key: 'id' } },
-      cratedAt: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
+      createdAt: { type: Sequelize.DATE, allowNull: false, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
       },
-      deletedAt: { type: Sequelize.DATE },
+      deletedAt: { type: Sequelize.DATE, },
     })
 
     return queryInterface.createTable('booksGenres', {

@@ -9,24 +9,21 @@ const getAllBooks = async (req, res) => {
   return res.send(books)
 }
 
-const getBookbyid = async (req, res) => {
-  const { id } = req.params
-  const { authorId } = req.params
-  const { title } = req.params
+const getBook = async (req, res) => {
+  const { search } = req.params
   const oneBook = await models.books.findOne({
-    attributes: ['id', 'authorId', 'title'],
-    where: { id: { [models.Op.like]: `%${id}%` } } ||
-    { authorId: { [models.Op.like]: `%${authorId}%` } } ||
-    { title: { [models.Op.like]: `%${title}%` } },
-    include: [{
-      model: models.books,
-      attributes: ['id', 'authorId', 'title']
-    }]
+    where: {
+      [models.Sequelize.Op.or]: [
+        { id: search },
+        { title: { [models.Sequelize.Op.like]: `%${search}%` }, }
+      ]
+    },
+    include: [{ model: models.authors }, { model: models.genres }]
   })
 
   return oneBook
     ? res.send(oneBook)
-    : res.send(404)
+    : res.sendStatus(404)
 }
 
-module.exports = { getAllBooks, getBookbyid }
+module.exports = { getAllBooks, getBook }
